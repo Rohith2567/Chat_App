@@ -7,8 +7,15 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-    cors: ["http://localhost:5173"],
+    cors: {
+        origin: "http://localhost:5173",
+        credentials: true
+    }
 });
+
+// const io = new Server(server, {
+//     cors: ["http://localhost:5173"],
+// });
 
 export function getReceiverSocketId(userId) {
     return userSocketMap[userId];
